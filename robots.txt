@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://magobajoseph170-cpu.github.io/MOMENTUMBOT_AI/sitemap.xml
