@@ -57,6 +57,10 @@ footer{border-top:1px solid #29475b;color:#a8bfd1;font-size:.86rem;padding-top:2
 @media(prefers-reduced-motion:reduce){:root{scroll-behavior:auto}}
 
 .roadmap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:28px}.milestone{position:relative;background:#0d2436;border:1px solid #29475b;border-radius:16px;padding:23px}.milestone h3{margin:12px 0 10px}.milestone p{margin-bottom:0}.milestone-stage{font-size:.75rem;letter-spacing:.13em;color:#a9c8dd;font-weight:800}.milestone-status{display:inline-block;font-size:.75rem;font-weight:800;color:#8ff0d0;background:#123c3b;border:1px solid #2d7872;border-radius:999px;padding:5px 12px}.milestone-status.pending{color:#c8deee;background:#183044;border-color:#36556b}.roadmap-note{font-size:.9rem;color:#adc7db;margin-top:16px;max-width:800px}@media(max-width:600px){.roadmap{grid-template-columns:1fr}}
+
+.public-api-box{border:1px solid #29475b;background:#10273b;border-radius:16px;padding:22px;max-width:790px}
+.api-status{font-weight:800;color:#d3e5f4}.api-status.connected{color:#8ff0d0}
+.api-explain{font-size:.9rem;color:#aac7d8;margin-top:10px;margin-bottom:0}
 </style>
 </head>
 <body>
@@ -93,8 +97,63 @@ footer{border-top:1px solid #29475b;color:#a8bfd1;font-size:.86rem;padding-top:2
 <p class="roadmap-note">Roadmap status is informational and may change as code, tests, and deployment readiness are verified.</p>
 </section>
 <section id="development" aria-labelledby="development-title"><div class="eyebrow">Project status</div><h2 id="development-title">Under active development.</h2><p class="section-intro">This website is a public introduction to MOMENTUMBOT_AI. The capabilities described here represent project focus areas and research directions, not verified live services, guaranteed performance, or public trading availability.</p><a class="secondary-cta" href="https://github.com/magobajoseph170-cpu/MOMENTUMBOT_AI" rel="noopener noreferrer">View project on GitHub</a></section>
+<section id="api-connection" aria-labelledby="api-connection-title">
+<div class="eyebrow">Connectivity</div><h2 id="api-connection-title">Public information API</h2>
+<p class="section-intro">An optional, read-only service will provide public project status. No personal account, trade controls, or trading balances are available on this website.</p>
+<div class="public-api-box" role="status" aria-live="polite">
+<div id="public-api-status" class="api-status">Not connected</div>
+<p class="api-explain" id="public-api-detail">The public status API has not been configured. This website remains informational only.</p>
+</div>
+</section>
 <section id="risk" aria-labelledby="risk-title"><div class="eyebrow">Important information</div><h2 id="risk-title">Financial risk disclosure</h2><div class="note">Trading financial instruments can result in substantial losses. Automated systems can fail, and past results do not guarantee future performance. Nothing on this website is investment advice or a solicitation to invest.</div></section>
 </main>
 <footer>© <span id="year">2026</span> MOMENTUMBOT_AI. Project information only. No public trading service is offered on this site.</footer>
 <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+<script>
+(function(){
+  const status=document.getElementById('public-api-status');
+  const detail=document.getElementById('public-api-detail');
+  const base='./api-config.json';
+  async function load(){
+    try{
+      const configResponse=await fetch(base,{cache:'no-store'});
+      if(!configResponse.ok) return;
+      const config=await configResponse.json();
+      const value=config&&config.api_base_url;
+      if(typeof value!=='string'||!value.trim())return;
+      const url=new URL(value);
+      if(url.protocol!=='https:'||url.username||url.password||
+        url.pathname!=='/'||url.search||url.hash||url.origin!==value||
+        url.origin===location.origin) {
+        detail.textContent='The public API configuration is invalid; connection disabled.';
+        return;
+      }
+      status.textContent='Checking public API…';
+      detail.textContent='Contacting the read-only project status service.';
+      const controller=new AbortController();
+      const timeout=setTimeout(()=>controller.abort(),6000);
+      let response;
+      try{
+        response=await fetch(url.origin+'/api/public/status',{
+          method:'GET',mode:'cors',credentials:'omit',cache:'no-store',
+          headers:{Accept:'application/json'},signal:controller.signal
+        });
+      }finally{clearTimeout(timeout)}
+      if(!response.ok)throw new Error('Status unavailable');
+      const data=await response.json();
+      if(data.project!=='MOMENTUMBOT_AI'||data.service!=='momentumbot-public-api'||
+         data.status!=='online'||data.trading_enabled!==false||
+         data.mode!=='public-information-only')throw new Error('Unexpected status response');
+      status.textContent='Public API connected';
+      status.classList.add('connected');
+      detail.textContent='Read-only project information is available. Trading features remain private and disabled on this site.';
+    }catch(error){
+      status.textContent='Public API unavailable';
+      status.classList.remove('connected');
+      detail.textContent='Unable to verify the informational service. No trading features are exposed.';
+    }
+  }
+  load();
+})();
+</script>
 </body></html>
