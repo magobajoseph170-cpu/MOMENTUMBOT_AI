@@ -53,13 +53,15 @@ footer{border-top:1px solid #29475b;color:#a8bfd1;font-size:.86rem;padding-top:2
 @media(max-width:850px){header{flex-wrap:wrap}.hero{grid-template-columns:1fr;padding-top:56px}.hero-panel{max-width:570px}.steps{grid-template-columns:1fr}}
 @media(max-width:600px){header,main,footer{padding:18px}.brand-icon{width:42px;height:42px}.logo{font-size:.9rem}nav{width:100%;gap:0}nav a{padding:10px 9px;font-size:.9rem}.hero{gap:25px;padding:48px 0 54px}.grid{grid-template-columns:1fr}.tile{padding:20px}section{margin-bottom:56px}}
 @media(prefers-reduced-motion:reduce){:root{scroll-behavior:auto}}
+
+.roadmap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:28px}.milestone{position:relative;background:#0d2436;border:1px solid #29475b;border-radius:16px;padding:23px}.milestone h3{margin:12px 0 10px}.milestone p{margin-bottom:0}.milestone-stage{font-size:.75rem;letter-spacing:.13em;color:#a9c8dd;font-weight:800}.milestone-status{display:inline-block;font-size:.75rem;font-weight:800;color:#8ff0d0;background:#123c3b;border:1px solid #2d7872;border-radius:999px;padding:5px 12px}.milestone-status.pending{color:#c8deee;background:#183044;border-color:#36556b}.roadmap-note{font-size:.9rem;color:#adc7db;margin-top:16px;max-width:800px}@media(max-width:600px){.roadmap{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to content</a>
 <header>
 <a class="brand" href="/MOMENTUMBOT_AI/" aria-label="MOMENTUMBOT_AI homepage"><img class="brand-icon" src="/MOMENTUMBOT_AI/favicon.svg" alt="" width="52" height="52"><span class="logo">MOMENTUMBOT<span class="accent">_AI</span></span></a>
-<nav aria-label="Primary"><a href="#about">About</a><a href="#technology">Technology</a><a href="#approach">Approach</a><a href="#development">Development</a><a href="#risk">Risk</a></nav>
+<nav aria-label="Primary"><a href="#about">About</a><a href="#technology">Technology</a><a href="#approach">Approach</a><a href="#roadmap">Roadmap</a><a href="#development">Development</a><a href="#risk">Risk</a></nav>
 </header>
 <main id="main-content" tabindex="-1">
 <section class="hero" aria-labelledby="hero-title">
@@ -76,6 +78,18 @@ footer{border-top:1px solid #29475b;color:#a8bfd1;font-size:.86rem;padding-top:2
 <article class="tile"><span class="number">04 / LEARNING</span><h3>Adaptive strategy research</h3><p>Studying strategy memory, historical evaluation, and feedback-driven improvements.</p></article>
 </div></section>
 <section id="approach" aria-labelledby="approach-title"><div class="eyebrow">Our approach</div><h2 id="approach-title">Research. Evaluate. Improve.</h2><div class="steps"><div class="step"><strong>Research</strong><p>Explore market-data sources and trading concepts with clear assumptions.</p></div><div class="step"><strong>Evaluate</strong><p>Assess strategies and risk controls through testing and evidence.</p></div><div class="step"><strong>Improve</strong><p>Use findings to refine models, safeguards, and system design.</p></div></div></section>
+<section id="roadmap" aria-labelledby="roadmap-title">
+<div class="eyebrow">Development roadmap</div>
+<h2 id="roadmap-title">From public presence to connected intelligence.</h2>
+<p class="section-intro">A transparent view of the project’s next steps. These milestones describe development work and planned integrations—not a public trading product or a promise of release dates.</p>
+<div class="roadmap">
+<article class="milestone"><span class="milestone-stage">STAGE 01</span><h3>Public project website</h3><span class="milestone-status">Published</span><p>GitHub Pages hosts the project introduction, architecture overview, and financial risk information.</p></article>
+<article class="milestone"><span class="milestone-stage">STAGE 02</span><h3>Trading intelligence development</h3><span class="milestone-status pending">In development</span><p>Continue reviewing market-data modules, decision logic, adaptive strategies, and risk controls. Full end-to-end verification is still required.</p></article>
+<article class="milestone"><span class="milestone-stage">STAGE 03</span><h3>Secure backend integration</h3><span class="milestone-status pending">Planned</span><p>Prepare an independently hosted API, synchronize approved project code, and connect the website without exposing private files or credentials.</p></article>
+<article class="milestone"><span class="milestone-stage">STAGE 04</span><h3>Quality and safety validation</h3><span class="milestone-status pending">Planned</span><p>Perform integration tests, access-control reviews, simulated trading checks, and operational monitoring before considering wider access.</p></article>
+</div>
+<p class="roadmap-note">Roadmap status is informational and may change as code, tests, and deployment readiness are verified.</p>
+</section>
 <section id="development" aria-labelledby="development-title"><div class="eyebrow">Project status</div><h2 id="development-title">Under active development.</h2><p class="section-intro">This website is a public introduction to MOMENTUMBOT_AI. The capabilities described here represent project focus areas and research directions, not verified live services, guaranteed performance, or public trading availability.</p><a class="secondary-cta" href="https://github.com/magobajoseph170-cpu/MOMENTUMBOT_AI" rel="noopener noreferrer">View project on GitHub</a></section>
 <section id="risk" aria-labelledby="risk-title"><div class="eyebrow">Important information</div><h2 id="risk-title">Financial risk disclosure</h2><div class="note">Trading financial instruments can result in substantial losses. Automated systems can fail, and past results do not guarantee future performance. Nothing on this website is investment advice or a solicitation to invest.</div></section>
 </main>
