@@ -11,7 +11,7 @@ SITE = "https://magobajoseph170-cpu.github.io/MOMENTUMBOT_AI/"
 
 def test_public_homepage_metadata_and_assets():
     html = (ROOT / "index.html").read_text(encoding="utf-8")
-    assert len(re.findall(r"<title\\b", html, flags=re.I)) == 1
+    assert len(re.findall(r"<title\b", html, flags=re.I)) == 1
     assert len(re.findall(r'<meta name="description"', html)) == 1
     assert len(re.findall(r'property="og:title"', html)) == 1
     assert f'<link rel="canonical" href="{SITE}">' in html
@@ -55,6 +55,6 @@ def test_sitemap_and_manifest_scoped_to_public_site():
 
 def test_touch_icon_is_png_with_expected_dimensions():
     raw = (ROOT / "apple-touch-icon.png").read_bytes()
-    assert raw[:8] == b"\\x89PNG\\r\\n\\x1a\\n"
+    assert raw[:8] == b"\x89PNG\r\n\x1a\n"
     width, height = struct.unpack(">II", raw[16:24])
     assert (width, height) == (180, 180)
