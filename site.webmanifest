@@ -1,0 +1,25 @@
+{
+  "name": "MOMENTUMBOT_AI — Trading Intelligence Research",
+  "short_name": "MOMENTUMBOT_AI",
+  "description": "Public information about the MOMENTUMBOT_AI trading intelligence research and development project. Not a live trading service.",
+  "id": "/MOMENTUMBOT_AI/",
+  "start_url": "/MOMENTUMBOT_AI/",
+  "scope": "/MOMENTUMBOT_AI/",
+  "display": "standalone",
+  "background_color": "#071321",
+  "theme_color": "#081321",
+  "icons": [
+    {
+      "src": "/MOMENTUMBOT_AI/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/MOMENTUMBOT_AI/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
